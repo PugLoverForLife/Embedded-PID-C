@@ -28,7 +28,7 @@ the deltas array since it is created on the heap.
 #define KI 80.0
 #define KD 200.0
 #define DELTA_SIZE 10
-#define setpoint 100
+#define SETPOINT 100
 
 // Creates the delta buffer for the PID controller
 double* deltas = new double[DELTA_SIZE];
@@ -76,7 +76,7 @@ int main()
 
 
 double PID_Calculation(double value) {
-    double delta = setpoint - value;
+    double delta = SETPOINT - value;
 
     deltas_Update(delta);
 
@@ -125,7 +125,7 @@ double calculate_d(double control_value)
     return control_value;
 }
 
-void closePID()
+void closePID() // Memory clean-up to be done when the PID is no longer needed.
 {
     delete[] deltas;
 }
